@@ -2,6 +2,7 @@ package br.com.caelum.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class BuscarContatoServlet {
 				throws ServletException, IOException {
 			PrintWriter out = response.getWriter();
 
-			ContatoDao dao = new ContatoDao();
+			ContatoDao dao = new ContatoDao((Connection) request.getAttribute("conexao"));
 			List<Contato> contatos = dao.getLista();
 
 			for (Contato contato : contatos) {

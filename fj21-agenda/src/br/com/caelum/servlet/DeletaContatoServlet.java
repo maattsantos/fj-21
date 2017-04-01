@@ -2,6 +2,7 @@ package br.com.caelum.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -26,7 +27,7 @@ public class DeletaContatoServlet extends HttpServlet {
 		Contato contato = new Contato();
 		contato.setId(Long.parseLong(id));
 		
-		ContatoDao dao = new ContatoDao();
+		ContatoDao dao = new ContatoDao((Connection) request.getAttribute("conexao"));
 		dao.exclui(contato);
 		
 		out.println("<html>");
